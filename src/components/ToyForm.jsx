@@ -3,18 +3,21 @@ import React from "react";
 
 function ToyForm({ addToy }) {
 
-  function handleSubmit(event) {
-    event.preventDefault();
 
-    const newToy = {
-      name: event.target.name.value,
-      image: event.target.image.value,
-    };
+function handleSubmit(event) {
+  event.preventDefault();
 
-    addToy(newToy);
+  const formData = new FormData(event.target);
 
-    event.target.reset();
-  }
+  const newToy = {
+    name: formData.get("name"),
+    image: formData.get("image"),
+  };
+
+  addToy(newToy);
+
+  event.target.reset();
+}
 
   return (
     <div className="container">
